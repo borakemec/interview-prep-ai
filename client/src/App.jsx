@@ -5,8 +5,9 @@ import './App.css';
 function App() {
     const [question, setQuestion] = useState(null);
     const [showHint, setShowHint] = useState(false);
-    const [isFlipped, setIsFlipped] = useState(false); // State to track the card flip
+    const [showSolution, setShowSolution] = useState(false);
     const [showDashboard, setShowDashboard] = useState(false);
+    const [loading, setLoading] = useState(false); // Loading state
     const [userId] = useState('user1'); // Example user ID, could be from auth context
 
     useEffect(() => {
@@ -15,13 +16,16 @@ function App() {
 
     const fetchQuestion = async () => {
         try {
+            setLoading(true); // Start loading
             const response = await axios.get('http://localhost:5000/question');
             setQuestion(response.data);
             setShowHint(false);
-            setIsFlipped(false); // Reset flip when fetching a new question
+            setShowSolution(false);
             setShowDashboard(false); // Hide dashboard when fetching a new question
         } catch (error) {
             console.error('Error fetching question:', error);
+        } finally {
+            setLoading(false); // Stop loading
         }
     };
 
@@ -36,6 +40,15 @@ function App() {
             console.error('Error marking category as known:', error);
         }
     };
+
+    if (loading) {
+        return (
+            <div className="loading-container">
+                <div className="loading-spinner"></div>
+                <p>Generating a new question...</p>
+            </div>
+        );
+    }
 
     if (!question && !showDashboard) return <div>Loading...</div>;
 
@@ -61,44 +74,34 @@ function App() {
                         className="dashboard-iframe"
                     />
                 ) : (
-                    <div className="cards-container">
-                        <div className="card trivia-card" id='triviaCard'>
+                    <div className="cards-container"> {/* Added container for both cards */}
+                        <div className="card trivia-card" id='triviaCard'> {/* Trivia card on the left */}
                             <h2>Trivia</h2>
                             <p>{question.trivia}</p>
                         </div>
-
-                        {/* Flip Card Container */}
-                        <div className={`flip-card ${isFlipped ? 'flipped' : ''}`}>
-                            <div className="flip-card-inner">
-                                {/* Front Side */}
-                                <div className="flip-card-front">
-                                    <h1>{question.question}</h1>
-                                    <p><strong>Description:</strong> {question.description}</p>
-                                    <p><strong>Constraints:</strong> {question.constraints}</p>
-                                    {showHint && <p><strong>Hint:</strong> {question.hint}</p>}
-                                    <button onClick={() => setShowHint(!showHint)}>
-                                        <i className="fas fa-lightbulb"></i> {showHint ? 'Hide Hint' : 'Show Hint'}
-                                    </button>
-                                    <button onClick={() => setIsFlipped(true)}> {/* Flip the card */}
-                                        <i className="fas fa-book"></i> Show Solution
-                                    </button>
-                                    <button onClick={handleKnowCategory}>
-                                        <i className="fas fa-check"></i> I Know This
-                                    </button>
-                                    <button onClick={fetchQuestion}>
-                                        <i className="fas fa-arrow-right"></i> Next Question
-                                    </button>
-                                </div>
-
-                                {/* Back Side (Solution) */}
-                                <div className="flip-card-back">
-                                    <h2>Solution</h2>
+                        <div className="card"> {/* Main card for the question */}
+                            <h1>{question.question}</h1>
+                            <p><strong>Description:</strong> {question.description}</p>
+                            <p><strong>Constraints:</strong> {question.constraints}</p>
+                            {showHint && <p><strong>Hint:</strong> {question.hint}</p>}
+                            {showSolution && (
+                                <div className="solution-box">
+                                    <p><strong>Solution:</strong></p>
                                     <pre><code>{question.code_solution}</code></pre>
-                                    <button onClick={() => setIsFlipped(false)}> {/* Flip back */}
-                                        Back to Question
-                                    </button>
                                 </div>
-                            </div>
+                            )}
+                            <button onClick={() => setShowHint(!showHint)}>
+                                <i className="fas fa-lightbulb"></i> {showHint ? 'Hide Hint' : 'Show Hint'}
+                            </button>
+                            <button onClick={() => setShowSolution(!showSolution)}>
+                                <i className="fas fa-book"></i> {showSolution ? 'Hide Solution' : 'Show Solution'}
+                            </button>
+                            <button onClick={handleKnowCategory}>
+                                <i className="fas fa-check"></i> I Know This
+                            </button>
+                            <button onClick={fetchQuestion}>
+                                <i className="fas fa-arrow-right"></i> Next Question
+                            </button>
                         </div>
                     </div>
                 )}
