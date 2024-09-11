@@ -17,7 +17,7 @@ function App() {
     const fetchQuestion = async () => {
         try {
             setLoading(true); // Start loading
-            const response = await axios.get('http://localhost:5000/question');
+            const response = await axios.get('https://interview-prep-ai-production.up.railway.app/question');
             setQuestion(response.data);
             setShowHint(false);
             setShowSolution(false);
@@ -31,7 +31,7 @@ function App() {
 
     const handleKnowCategory = async () => {
         try {
-            await axios.post('http://localhost:5000/know-category', {
+            await axios.post('https://interview-prep-ai-production.up.railway.app/know-category', {
                 user_id: userId,
                 category: question.category
             });
@@ -67,7 +67,7 @@ function App() {
             <div className="content">
                 {showDashboard ? (
                     <iframe
-                        src="http://localhost:5000/dashboard"
+                        src="https://interview-prep-ai-production.up.railway.app/dashboard"
                         title="Dashboard"
                         width="100%"
                         height="600px"
