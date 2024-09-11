@@ -1,0 +1,247 @@
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css');
+
+body {
+  background-color: #e1e1e1;
+}
+
+.App {
+  text-align: center;
+  color: #3c3838;
+  font-family: Arial, sans-serif;
+  padding-top: 60px;
+  padding-bottom: 40px;
+  background-color: #e1e1e1;
+}
+
+.Header {
+  background: linear-gradient(90deg, #736c6c, #2d2d2d);
+  color: white;
+  padding: 0px 20px;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  display: flex;
+  justify-content: center; /* Center the content in the header */
+  align-items: center;
+  height: 60px; /* Added height for proper centering */
+}
+
+.header-buttons {
+  display: flex;
+  position: absolute; /* Position the buttons absolutely */
+  right: 20px; /* Align buttons to the right */
+  padding: 0px 30px;
+}
+
+.Header h1 {
+  margin: 0;
+  position: absolute; /* Position the header text absolutely */
+  left: 50%;
+  transform: translateX(-50%); /* Center the text horizontally */
+  font-size: 24px;
+}
+
+.sign-out-button,
+.dashboard-button {
+  background-color: #ffc847;
+  color: #3c3838;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.sign-out-button:hover,
+.dashboard-button:hover {
+  background-color: #e0a72a;
+}
+
+.content {
+  margin: 20px;
+  background-color: #e1e1e1;
+}
+
+.dashboard-iframe {
+  border: none;
+  border-radius: 8px;
+}
+
+.cards-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 100px; /* Reduce the gap between the cards */
+  padding: 20px;
+}
+
+/* Trivia card on the left */
+#triviaCard {
+  flex: 1;
+  max-width: 200px;
+  height: 100%;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-left: -200px;
+}
+
+/* Main card for the question */
+.card {
+  background: linear-gradient(135deg, #ffc847, #fdc317);
+  border-radius: 12px;
+  padding: 15px 30px 30px;
+  max-width: 600px;
+  text-align: left;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
+  transition: transform 0.2s ease-in-out;
+}
+
+.card:hover {
+  transform: translateY(-5px); /* Slight lift on hover */
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2); /* Stronger shadow on hover */
+}
+
+button {
+  background-color: #3c3838;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  margin: 5px;
+  border-radius: 30px; /* More rounded */
+  cursor: pointer;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Soft shadow */
+  transition: all 0.3s ease; /* Smooth transition for hover effects */
+}
+
+button:hover {
+  background-color: #555;
+  box-shadow: 0px 6px 8px rgba(0, 0, 0, 0.2); /* Enhanced shadow on hover */
+}
+
+.Footer {
+  background-color: #3c3838;
+  color: white;
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+  left: 0;
+}
+
+.solution-box {
+  background-color: #1e1e1e;
+  color: #f5f5f5;
+  padding: 10px;
+  border-radius: 8px;
+  text-align: left;
+}
+
+pre {
+  margin: 0;
+  padding: 0;
+  overflow-x: auto;
+}
+
+code {
+  display: block;
+  white-space: pre-wrap;
+}
+
+.cardContainer {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Flip card container */
+.flip-card {
+  background-color: transparent;
+  width: 650px; /* Ensure the width matches the main card */
+  height: 300px; /* Ensure the height matches the main card */
+  perspective: 1000px; /* 3D effect */
+
+}
+
+.flip-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.8s; /* Animation duration */
+  transform-style: preserve-3d;
+}
+
+.flip-card.flipped .flip-card-inner {
+  transform: rotateY(180deg); /* Flip the card */
+}
+
+.flip-card-front, .flip-card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden; /* Hide the back face when not flipped */
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
+  background: linear-gradient(135deg, #ffc847, #fdc317); /* Match gradient to front */
+}
+
+.flip-card-front {
+  padding-top: 30px;
+  padding-left: 30px;
+  padding-right: 30px;
+}
+
+.flip-card-back {
+  transform: rotateY(180deg);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 20px;
+}
+
+/* Code box styling */
+pre, code {
+  margin: 0;
+  padding: 15px;
+  background-color: #1e1e1e; /* Black background for the code box */
+  color: #f5f5f5; /* White text for the code */
+  border-radius: 8px; /* Rounded corners */
+  text-align: left;
+  overflow-x: auto; /* Allow horizontal scrolling if needed */
+  word-wrap: break-word; /* Break long words to avoid overflow */
+}
+
+/* Loading spinner */
+.loading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh; /* Full screen height */
+}
+
+.loading-spinner {
+  border: 8px solid #f3f3f3; /* Light grey */
+  border-top: 8px solid #ffc847;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.loading-container p {
+  margin-top: 20px;
+  font-size: 18px;
+  color: #3c3838;
+}
+
+
