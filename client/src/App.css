@@ -1,0 +1,112 @@
+.App {
+  text-align: center;
+  background-color: white;
+  color: #3c3838;
+  font-family: Arial, sans-serif;
+  padding-top: 60px; /* To prevent content from being hidden behind the fixed header */
+  padding-bottom: 40px; /* To prevent content from being hidden behind the fixed footer */
+}
+
+.Header {
+  background-color: #3c3838;
+  color: white;
+  padding: 0px 20px;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header-buttons {
+  display: flex;
+  padding: 0px 30px;
+}
+
+.sign-out-button,
+.dashboard-button {
+  background-color: #ffc847;
+  color: #3c3838;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.sign-out-button:hover,
+.dashboard-button:hover {
+  background-color: #e0a72a;
+}
+
+.content {
+  margin: 20px;
+}
+
+.dashboard-iframe {
+  border: none;
+  border-radius: 8px;
+}
+
+.card {
+  background-color: #ffc847;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  max-width: 600px;
+  margin: auto;
+}
+
+button {
+  background-color: #3c3838;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  margin: 5px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #555;
+}
+
+.Footer {
+  background-color: #3c3838;
+  color: white;
+  padding: 10px 0;
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+  left: 0;
+}
+
+.solution-box {
+  background-color: #1e1e1e; /* Dark background for the code box */
+  color: #f5f5f5; /* Light text color for contrast */
+  padding: 10px;
+  border-radius: 8px;
+  text-align: left; /* Align text to the left for code readability */
+}
+
+pre {
+  margin: 0;
+  padding: 0;
+  overflow-x: auto; /* Allow horizontal scrolling if needed */
+}
+
+code {
+  display: block;
+  white-space: pre-wrap; /* Ensure the code is formatted correctly */
+}
+
+.cardContainer {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
