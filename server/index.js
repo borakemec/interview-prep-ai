@@ -11,6 +11,8 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
+app.use('/assets', express.static(path.join(__dirname, 'public', 'assets')));
+
 const OPENAI_API_KEY = process.env.OPENAI_API_KEY; // Use the environment variable
 
 const DB_FILE = './questions.db'; // Path to the database file
