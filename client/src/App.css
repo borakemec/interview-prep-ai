@@ -73,7 +73,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  gap: 100px; /* Reduce the gap between the cards */
+  gap: 50px; /* Adjust gap between cards */
   padding: 20px;
 }
 
@@ -164,7 +164,12 @@ code {
   width: 650px; /* Ensure the width matches the main card */
   height: 300px; /* Ensure the height matches the main card */
   perspective: 1000px; /* 3D effect */
+  transition: transform 0.2s ease-in-out;
+}
 
+.flip-card:hover {
+  transform: translateY(-5px); /* Slight lift on hover */
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2); /* Stronger shadow on hover */
 }
 
 .flip-card-inner {
@@ -202,6 +207,7 @@ code {
   justify-content: space-between;
   padding: 20px;
 }
+
 
 /* Code box styling */
 pre, code {
@@ -243,5 +249,3 @@ pre, code {
   font-size: 18px;
   color: #3c3838;
 }
-
-
